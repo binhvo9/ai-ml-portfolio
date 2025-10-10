@@ -1,0 +1,13 @@
+[project]
+name = "byolr"
+version = "0.1.0"
+description = "Build Your Own Linear Regression — from scratch"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+addopts = "-q"
+
+[tool.black]
+line-length = 100
