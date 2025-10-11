@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BlogPy</title>
+    <!-- Kết nối CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>📝 BlogPy</h1>
+      <nav><a href="{{ url_for('home') }}">Home</a></nav>
+    </header>
+
+    <main class="container">
+      {# Đây là 1 block DUY NHẤT. PHẢI đóng bằng {% endblock %} #}
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <footer class="site-footer"><small>Made with Flask & Jinja2 ✨</small></footer>
+  </body>
+</html>

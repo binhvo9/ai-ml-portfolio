@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Edit Post</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert">
+        {% for m in messages %}
+          <p>{{ m }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form action="{{ url_for('update_post', post_id=post.id) }}" method="post" class="card form">
+    <!-- Ô tiêu đề: có sẵn giá trị cũ -->
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" value="{{ post.title }}" required>
+
+    <!-- Ô nội dung: có sẵn giá trị cũ -->
+    <label for="content">Content</label>
+    <textarea id="content" name="content" rows="8" required>{{ post.content }}</textarea>
+
+    <div class="actions">
+      <a class="btn ghost" href="{{ url_for('home') }}">← Cancel</a>
+      <button class="btn" type="submit">Save</button>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="toolbar">
+    <h2>All Posts</h2>
+    <a class="btn" href="{{ url_for('new_post') }}">➕ New Post</a>
+  </div>
+
+  {% if not posts %}
+    <p>No posts yet. Click “New Post” to add one! 🚀</p>
+  {% else %}
+    <ul class="post-list">
+      {% for p in posts %}
+        <li class="card">
+          <h3>{{ p.title }}</h3>
+
+          <!-- TÓM TẮT 1 CÂU: dễ đọc nhanh -->
+          <p class="summary">{{ p.summary }}</p>
+
+          <!-- ĐOẠN TRÍCH 200 ký tự: vẫn giữ -->
+          <p class="excerpt">
+            {{ p.content[:200] }}{% if p.content|length > 200 %}…{% endif %}
+          </p>
+
+          <!-- TAGS: badge nhỏ nhỏ -->
+          {% if p.tags %}
+            <div class="tags">
+              {% for t in p.tags %}
+                <span class="tag">#{{ t }}</span>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="row-actions">
+            <a class="btn ghost" href="{{ url_for('edit_post', post_id=p.id) }}">✏️ Edit</a>
+            <form action="{{ url_for('delete_post', post_id=p.id) }}" method="post" onsubmit="return confirm('Delete this post?');" style="display:inline;">
+              <button class="btn danger" type="submit">🗑️ Delete</button>
+            </form>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

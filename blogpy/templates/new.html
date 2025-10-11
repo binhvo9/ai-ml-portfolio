@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>New Post</h2>
+
+  {# Hiện thông báo lỗi nếu có (từ flash) #}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert">
+        {% for m in messages %}
+          <p>{{ m }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form action="{{ url_for('create_post') }}" method="post" class="card form">
+    <!-- Ô tiêu đề: chỗ gõ tên bài -->
+    <label for="title">Title</label>
+    <input id="title" name="title" type="text" placeholder="My first post" required>
+
+    <!-- Ô nội dung: chỗ gõ nội dung bài -->
+    <label for="content">Content</label>
+    <textarea id="content" name="content" rows="8" placeholder="Write something cool..." required></textarea>
+
+    <!-- Nút bấm gửi bài -->
+    <div class="actions">
+      <a class="btn ghost" href="{{ url_for('home') }}">← Back</a>
+      <button class="btn" type="submit">Publish</button>
+    </div>
+  </form>
+{% endblock %}
