@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Risk Prediction (BTC/USDT)</h1>
+
+    {% if error %}
+      <p><strong>Error:</strong> {{ error }}</p>
+      <p><a href="/">Back</a></p>
+    {% elif result and result.prob_drop_2pct_tomorrow is not none %}
+      <p>Probability of ≥ 2% drop tomorrow:
+        <strong>{{ result.prob_drop_2pct_tomorrow }}</strong>
+      </p>
+      {% set p = result.prob_drop_2pct_tomorrow %}
+      {% if p >= 0.7 %}<p>Risk: 🔴 High</p>
+      {% elif p >= 0.4 %}<p>Risk: 🟠 Medium</p>
+      {% else %}<p>Risk: 🟢 Low</p>{% endif %}
+      <p><a href="/">Back</a></p>
+    {% else %}
+      <p>Not enough data to predict yet.</p>
+      <p><a href="/">Back</a></p>
+    {% endif %}
+  </body>
+</html>

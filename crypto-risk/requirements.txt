@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+jinja2
+httpx
+pandas
+pyyaml
+pandera
+scikit-learn
+lightgbm
+optuna
+matplotlib
+plotly
+prefect
+python-dateutil

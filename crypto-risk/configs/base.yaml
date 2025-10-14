@@ -1,0 +1,11 @@
+symbol: "bitcoin"
+vs_currency: "usd"
+history_days: 730
+freq: "daily"     # change to hourly later if you want
+target:
+  type: "binary_drop"
+  drop_threshold_pct: 2.0
+cv:
+  n_splits: 5
+optuna:
+  n_trials: 50
